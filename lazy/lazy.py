@@ -1,4 +1,5 @@
 _print = print
+_input = input
 
 
 class Effect(object):
@@ -62,4 +63,8 @@ def lazy(function):
 
 @lazy
 def print(*arg, **kwargs):
-    _print(*arg, **kwargs)
+    return _print(*arg, **kwargs)
+
+@lazy
+def input(*arg, **kwargs):
+    return _input(*arg, **kwargs)
