@@ -1,6 +1,5 @@
 from lazy import lazy, ChainEffect, Effect, print
 
-
 @lazy
 def sum(a, b):
     return a + b
@@ -20,11 +19,6 @@ def test_lazy_sum():
 
     assert sum_effect.excute() == 1 + 2
     assert not sum_effect.excute() == 1 + 3
-
-
-def test_lazy_print():
-    print_effect = print('will not printed text')
-    assert isinstance(print_effect, Effect)
 
 
 def test_effect_chain():
