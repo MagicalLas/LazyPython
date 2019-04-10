@@ -72,6 +72,6 @@ def test_lazy_one_multiplex():
     chain_effect = sum_effect\
         .flatMap(multiplexer)\
         .flatMap(multiplexer)\
-        .map(lambda x: x - 4)
+        & (lambda x: x - 4)
 
     assert chain_effect.excute() == (3 * 2 * 2) - 4

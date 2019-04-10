@@ -23,6 +23,9 @@ class Effect(object):
     def __lshift__(self, f):
         return self.flatMap(f)
 
+    def __rand__(self, f):
+        return self.map(f)
+
 
 class ChainEffect(object):
     def __init__(self, effect_list):
@@ -38,14 +41,17 @@ class ChainEffect(object):
         self.effects.append(f)
         return self
 
-    def __lshift__(self, f):
-        return self.flatMap(f)
-
     def excute(self):
         value = self.effects[0].excute()
         for effect in self.effects[1:]:
             value = effect(value).excute()
         return value
+
+    def __lshift__(self, f):
+        return self.flatMap(f)
+
+    def __rand__(self, f):
+        return self.map(f)
 
 
 def lazy(function):
