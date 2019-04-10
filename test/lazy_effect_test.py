@@ -23,7 +23,7 @@ def test_lazy_sum():
 
 def test_effect_chain():
     sum_effect = sum(1, 2)
-    print_effect = sum_effect.map(print)
+    print_effect = sum_effect.flatMap(lambda _: print)
 
     assert isinstance(print_effect, ChainEffect)
     
@@ -36,8 +36,9 @@ def test_effect_chain():
 def test_lazy_one_multiplex():
     multiplexer = mul(2)
     sum_effect = sum(1, 2)
+    result_effect = sum_effect\
+        .flatMap(lambda _: multiplexer)
 
-    result_effect = sum_effect << multiplexer
 
     assert isinstance(result_effect, ChainEffect)
     assert result_effect.excute() == 3 * 2
@@ -47,7 +48,11 @@ def test_lazy_multiplex():
     multiplexer = mul(2)
     sum_effect = sum(1, 2)
 
-    result_effect = sum_effect << multiplexer << multiplexer << multiplexer
+    result_effect = sum_effect\
+        .flatMap(lambda _: multiplexer)\
+        .flatMap(lambda _: multiplexer)\
+        .flatMap(lambda _: multiplexer)
+
 
     assert isinstance(result_effect, ChainEffect)
     assert result_effect.excute() == 3 * 2 * 2 * 2
