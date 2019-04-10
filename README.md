@@ -10,6 +10,8 @@ from lazy import lazy
 @lazy
 def sum(a, b):
     return a + b
+
+sum.excute()
 ```
 
 ## Test

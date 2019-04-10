@@ -14,12 +14,20 @@ class Effect(object):
         e = Effect(self.f, self.a, self.w)
         return ChainEffect([e, f])
 
+    def __lshift__(self, f):
+        e = Effect(self.f, self.a, self.w)
+        return ChainEffect([e, f])
+
 
 class ChainEffect(object):
     def __init__(self, effect_list):
         self.effects = effect_list
 
     def map(self, f):
+        self.effects.append(f)
+        return self
+
+    def __lshift__(self, f):
         self.effects.append(f)
         return self
 
