@@ -11,10 +11,11 @@ from lazy import lazy, input
 def sum(a, b):
     return a + b
 
-sum(1,2).excute()
+sum_effect = sum(1,2)
+sum_effect.excute() # 1 + 2
 
 input_effect = input("Hello! Lazy World")
-input_effect.excute()
+input_effect.excute() # will printing "Hello! Lazy World"
 ```
 
 ## Test
