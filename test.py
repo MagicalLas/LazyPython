@@ -15,10 +15,12 @@ def mul(a):
 
 def test_lazy_sum():
     sum_effect = sum(1, 2)
+
+    assert isinstance(sum_effect, Effect)
+
     assert sum_effect.excute() == 1 + 2
     assert not sum_effect.excute() == 1 + 3
 
-    assert isinstance(sum_effect, Effect)
 
 def test_lazy_print():
     print_effect = print('will not printed text')
