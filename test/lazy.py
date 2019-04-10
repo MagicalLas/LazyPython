@@ -10,26 +10,24 @@ class Effect(object):
     def excute(self):
         return self.f(*self.a, **self.w)
 
-    def map(self, f):
+    def flatMap(self, f):
         e = Effect(self.f, self.a, self.w)
         return ChainEffect([e, f])
 
     def __lshift__(self, f):
-        e = Effect(self.f, self.a, self.w)
-        return ChainEffect([e, f])
+        return self.flatMap(f)
 
 
 class ChainEffect(object):
     def __init__(self, effect_list):
         self.effects = effect_list
 
-    def map(self, f):
+    def flatMap(self, f):
         self.effects.append(f)
         return self
 
     def __lshift__(self, f):
-        self.effects.append(f)
-        return self
+        return self.flatMap(f)
 
     def excute(self):
         value = self.effects[0].excute()
