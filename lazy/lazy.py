@@ -23,7 +23,7 @@ class Effect(object):
     def __lshift__(self, f):
         return self.flatMap(f)
 
-    def __rand__(self, f):
+    def __and__(self, f):
         return self.map(f)
 
 
@@ -50,7 +50,7 @@ class ChainEffect(object):
     def __lshift__(self, f):
         return self.flatMap(f)
 
-    def __rand__(self, f):
+    def __and__(self, f):
         return self.map(f)
 
 
