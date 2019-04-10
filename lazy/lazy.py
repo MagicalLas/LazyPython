@@ -14,6 +14,12 @@ class Effect(object):
         e = Effect(self.f, self.a, self.w)
         return ChainEffect([e, f])
 
+    def map(self, f):
+        @lazy
+        def dummy():
+            return f(self.excute())
+        return dummy()
+
     def __lshift__(self, f):
         return self.flatMap(f)
 
@@ -21,6 +27,12 @@ class Effect(object):
 class ChainEffect(object):
     def __init__(self, effect_list):
         self.effects = effect_list
+
+    def map(self, f):
+        @lazy
+        def dummy():
+            return f(self.excute())
+        return dummy()
 
     def flatMap(self, f):
         self.effects.append(f)
