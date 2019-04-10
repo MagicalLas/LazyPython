@@ -55,3 +55,23 @@ def test_lazy_multiplex():
 
     assert isinstance(result_effect, ChainEffect)
     assert result_effect.excute() == 3 * 2 * 2 * 2
+
+
+def test_lazy_maps():
+    sum_effect = sum(1, 2)
+    result = sum_effect\
+        .map(lambda x: x + 1)\
+        .map(lambda x: x + 1)\
+        .map(lambda x: x + 1)\
+        .excute()
+    assert result == 1 + 2 + 1 + 1 + 1
+
+def test_lazy_one_multiplex():
+    multiplexer = mul(2)
+    sum_effect = sum(1, 2)
+    chain_effect = sum_effect\
+        .flatMap(multiplexer)\
+        .flatMap(multiplexer)\
+        .map(lambda x: x - 4)
+
+    assert chain_effect.excute() == (3 * 2 * 2) - 4
