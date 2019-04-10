@@ -1,13 +1,13 @@
-import main
+from lazy import lazy, ChainEffect, Effect, print
 
 
-@main.lazy
+@lazy
 def sum(a, b):
     return a + b
 
 
 def mul(a):
-    @main.lazy
+    @lazy
     def lazy_mul(b):
         return a * b
     return lazy_mul
@@ -18,14 +18,18 @@ def test_lazy_sum():
     assert sum_effect.excute() == 1 + 2
     assert not sum_effect.excute() == 1 + 3
 
-    assert isinstance(sum_effect, main.Effect)
+    assert isinstance(sum_effect, Effect)
+
+def test_lazy_print():
+    print_effect = print('will not printed text')
+    assert isinstance(print_effect, Effect)
 
 
 def test_effect_chain():
     sum_effect = sum(1, 2)
     print_effect = sum_effect.map(print)
 
-    assert isinstance(print_effect, main.ChainEffect)
+    assert isinstance(print_effect, ChainEffect)
 
 
 def test_lazy_one_multiplex():
@@ -35,7 +39,7 @@ def test_lazy_one_multiplex():
     result_effect = sum_effect\
         .map(multiplexer)
 
-    assert isinstance(result_effect, main.ChainEffect)
+    assert isinstance(result_effect, ChainEffect)
     assert result_effect.excute() == 3 * 2
 
 
@@ -48,5 +52,5 @@ def test_lazy_multiplex():
         .map(multiplexer)\
         .map(multiplexer)
 
-    assert isinstance(result_effect, main.ChainEffect)
+    assert isinstance(result_effect, ChainEffect)
     assert result_effect.excute() == 3 * 2 * 2 * 2
