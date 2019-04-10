@@ -6,7 +6,8 @@ Effect들은 map이라는 메소드를 지원합니다.
 @lazy
 def sum(a,b):
     return a + b
-
+    
+@lazy
 def add4(a):
     return a + 4
 sum(2,3).flatMap(add4).excute() # (2 + 3) + 4
