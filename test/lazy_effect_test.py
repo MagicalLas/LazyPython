@@ -39,7 +39,6 @@ def test_lazy_one_multiplex():
     result_effect = sum_effect\
         .flatMap(multiplexer)
 
-
     assert isinstance(result_effect, ChainEffect)
     assert result_effect.excute() == 3 * 2
 
