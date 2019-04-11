@@ -1,4 +1,4 @@
-from either import Either
+from .either import Either
 
 _print = print
 _input = input
