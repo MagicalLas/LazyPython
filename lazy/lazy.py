@@ -1,3 +1,5 @@
+from either import Either
+
 _print = print
 _input = input
 
@@ -42,6 +44,15 @@ class ChainEffect(object):
         self.effects.append(f)
         return self
 
+    def attempt(self):
+        @lazy
+        def dummy():
+            try:
+                return Either.right(self.excute())
+            except Exception as e:
+                return Either.left(e)
+        return dummy()
+
     def excute(self):
         value = self.effects[0].excute()
         for effect in self.effects[1:]:
@@ -64,6 +75,7 @@ def lazy(function):
 @lazy
 def print(*arg, **kwargs):
     return _print(*arg, **kwargs)
+
 
 @lazy
 def input(*arg, **kwargs):
