@@ -14,35 +14,16 @@ class Effect(object):
         return self.f(*self.a, **self.w)
 
     def flatMap(self, f):
-        e = Effect(self.f, self.a, self.w)
-        return ChainEffect([e, f])
+        @lazy
+        def dummy(_F):
+            return _F(self.excute()).excute()
+        return dummy()
 
     def map(self, f):
         @lazy
-        def dummy():
-            return f(self.excute())
-        return dummy()
-
-    def __lshift__(self, f):
-        return self.flatMap(f)
-
-    def __and__(self, f):
-        return self.map(f)
-
-
-class ChainEffect(object):
-    def __init__(self, effect_list):
-        self.effects = effect_list
-
-    def map(self, f):
-        @lazy
-        def dummy():
-            return f(self.excute())
-        return dummy()
-
-    def flatMap(self, f):
-        self.effects.append(f)
-        return self
+        def dummy(_F):
+            return _F(self.excute())
+        return dummy(f)
 
     def attempt(self):
         @lazy
@@ -52,12 +33,6 @@ class ChainEffect(object):
             except Exception as e:
                 return Either.left(e)
         return dummy()
-
-    def excute(self):
-        value = self.effects[0].excute()
-        for effect in self.effects[1:]:
-            value = effect(value).excute()
-        return value
 
     def __lshift__(self, f):
         return self.flatMap(f)
