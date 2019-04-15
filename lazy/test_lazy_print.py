@@ -1,5 +1,6 @@
 from .lazy import Effect
 
+
 def test_lazy_print():
     from .lazy import print
     print_effect = print('will not printed text')

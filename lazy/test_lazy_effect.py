@@ -1,5 +1,6 @@
 from .lazy import lazy, Effect, print
 
+
 @lazy
 def sum(a, b):
     return a + b
@@ -20,6 +21,7 @@ def test_lazy_sum():
     assert sum_effect.excute() == 1 + 2
     assert not sum_effect.excute() == 1 + 3
 
+
 def test_lazy_maps():
     sum_effect = sum(1, 2)
     result = sum_effect\
@@ -28,6 +30,7 @@ def test_lazy_maps():
         .map(lambda x: x + 3)\
         .excute()
     assert result == 1 + 2 + 1 + 2 + 3
+
 
 def test_lazy_one_multiplex():
     multiplexer = mul(2)

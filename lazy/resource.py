@@ -36,6 +36,7 @@ class Resource(object):
     @staticmethod
     def _relese(f):
         _f = f
+
         def relese(g):
             return Resource(_f, g, lazy(lambda x: x))
         return relese
