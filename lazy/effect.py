@@ -26,9 +26,9 @@ class Effect(object):
         @lazy
         def dummy():
             try:
-                return Either.right(self.excute())
+                return Either.left(self.excute())
             except Exception as e:
-                return Either.left(e)
+                return Either.right(e)
         return dummy()
 
     def __lshift__(self, f):
