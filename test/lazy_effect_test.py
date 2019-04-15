@@ -19,52 +19,14 @@ def test_lazy_sum():
 
     assert sum_effect.excute() == 1 + 2
     assert not sum_effect.excute() == 1 + 3
-
-
-def test_effect_chain():
-    sum_effect = sum(1, 2)
-    print_effect = sum_effect.flatMap(print)
-
-    assert isinstance(print_effect, ChainEffect)
-    
-    sum_effect = sum(4, 1)
-    print_effect = sum_effect << print
-
-    assert isinstance(print_effect, ChainEffect)
-
-
-def test_lazy_one_multiplex():
-    multiplexer = mul(2)
-    sum_effect = sum(1, 2)
-    result_effect = sum_effect\
-        .flatMap(multiplexer)
-
-    assert isinstance(result_effect, ChainEffect)
-    assert result_effect.excute() == 3 * 2
-
-
-def test_lazy_multiplex():
-    multiplexer = mul(2)
-    sum_effect = sum(1, 2)
-
-    result_effect = sum_effect\
-        .flatMap(multiplexer)\
-        .flatMap(multiplexer)\
-        .flatMap(multiplexer)
-
-
-    assert isinstance(result_effect, ChainEffect)
-    assert result_effect.excute() == 3 * 2 * 2 * 2
-
-
 def test_lazy_maps():
     sum_effect = sum(1, 2)
     result = sum_effect\
         .map(lambda x: x + 1)\
-        .map(lambda x: x + 1)\
-        .map(lambda x: x + 1)\
+        .map(lambda x: x + 2)\
+        .map(lambda x: x + 3)\
         .excute()
-    assert result == 1 + 2 + 1 + 1 + 1
+    assert result == 1 + 2 + 1 + 2 + 3
 
 def test_lazy_one_multiplex():
     multiplexer = mul(2)
