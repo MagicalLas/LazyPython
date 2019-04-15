@@ -1,4 +1,4 @@
-from .lazy import lazy, Effect, print
+from .effect import lazy, Effect
 
 
 @lazy

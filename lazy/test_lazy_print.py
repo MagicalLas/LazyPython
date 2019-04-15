@@ -1,4 +1,4 @@
-from .lazy import Effect
+from .effect import Effect
 
 
 def test_lazy_print():
