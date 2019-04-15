@@ -17,7 +17,7 @@ class Effect(object):
         @lazy
         def dummy(_F):
             return _F(self.excute()).excute()
-        return dummy()
+        return dummy(f)
 
     def map(self, f):
         @lazy
