@@ -3,14 +3,15 @@ from .lazy import lazy
 
 class Resource(object):
 
-    def __init__(self, f, g):
+    def __init__(self, f, g, middle):
         self.f = f
         self.g = g
+        self.middle = middle
 
     def use(self, excuter):
         @lazy
         def dummy():
-            self.file = self.f()
+            self.file = self.f.excute()
             return excuter(self.file)
         self.middle = dummy()
         return self
@@ -36,5 +37,5 @@ class Resource(object):
     def _relese(f):
         _f = f
         def relese(g):
-            return Resource(_f, g)
+            return Resource(_f, g, lazy(lambda x: x))
         return relese
