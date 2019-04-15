@@ -1,4 +1,4 @@
-from lazy import lazy, ChainEffect, Effect, print
+from .lazy import lazy, Effect, print
 
 @lazy
 def sum(a, b):
@@ -19,6 +19,7 @@ def test_lazy_sum():
 
     assert sum_effect.excute() == 1 + 2
     assert not sum_effect.excute() == 1 + 3
+
 def test_lazy_maps():
     sum_effect = sum(1, 2)
     result = sum_effect\
