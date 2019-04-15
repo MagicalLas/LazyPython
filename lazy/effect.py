@@ -1,8 +1,5 @@
 from .either import Either
 
-_print = print
-_input = input
-
 
 class Effect(object):
     def __init__(self, f, a, w):
@@ -45,13 +42,3 @@ def lazy(function):
     def f(*arg, **kwargs):
         return Effect(function, arg, kwargs)
     return f
-
-
-@lazy
-def print(*arg, **kwargs):
-    return _print(*arg, **kwargs)
-
-
-@lazy
-def input(*arg, **kwargs):
-    return _input(*arg, **kwargs)
