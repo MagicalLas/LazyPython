@@ -1,5 +1,5 @@
-from lazy.lazy import print
-from lazy.effect_app import EfApp
+from lazy.utils import print
+from lazy.ef_app import EfApp
 
 
 @EfApp
