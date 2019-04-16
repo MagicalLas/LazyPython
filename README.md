@@ -21,5 +21,6 @@ input_effect.excute() # will printing "Hello! Lazy World"
 ## Test
 
 ```bash
-pytest test.py
+cd  lazy
+pytest
 ```

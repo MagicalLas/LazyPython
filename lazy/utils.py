@@ -1,4 +1,4 @@
-from .lazy import lazy
+from .effect import lazy
 
 _print = print
 _input = input
@@ -6,7 +6,7 @@ _input = input
 _int = int
 _chr = chr
 _bool = bool
-_string = string
+_str = str
 
 _abs = abs
 _all = all
@@ -37,8 +37,8 @@ def bool(*arg, **kwargs):
 
 
 @lazy
-def string(*arg, **kwargs):
-    return _string(*arg, **kwargs)
+def str(*arg, **kwargs):
+    return _str(*arg, **kwargs)
 
 
 @lazy
