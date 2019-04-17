@@ -14,15 +14,15 @@ class Resource(object):
             self.file = self.f.excute()
             return excuter(self.file)
         self.middle = dummy()
-        return self
+        return Resource(self.f, self.g, self.middle)
 
     def map(self, f):
         self.middle = self.middle & f
-        return self
+        return Resource(self.f, self.g, self.middle)
 
     def flatMap(self, f):
         self.middle = self.middle << f
-        return self
+        return Resource(self.f, self.g, self.middle)
 
     def excute(self):
         result = self.middle.excute()
