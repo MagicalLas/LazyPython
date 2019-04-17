@@ -1,6 +1,6 @@
 # LazyPython
 
-Lazy evaluation helper using effect
+Library for Pure Functional Programming
 
 ## Useage
 
