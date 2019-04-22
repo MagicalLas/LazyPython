@@ -11,6 +11,7 @@ _str = str
 _abs = abs
 _all = all
 _any = any
+_divmod = divmod
 
 
 @lazy
@@ -27,9 +28,11 @@ def input(*arg, **kwargs):
 def int(*arg, **kwargs):
     return _int(*arg, **kwargs)
 
+
 @lazy
 def chr(*arg, **kwargs):
     return _chr(*arg, **kwargs)
+
 
 @lazy
 def bool(*arg, **kwargs):
@@ -54,3 +57,8 @@ def all(*arg, **kwargs):
 @lazy
 def any(*arg, **kwargs):
     return _any(*arg, **kwargs)
+
+
+@lazy
+def divmod(*arg, **kwargs):
+    return _divmod(*arg, **kwargs)
