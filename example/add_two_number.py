@@ -1,9 +1,9 @@
 from lazy.utils import input, print, int
-from lazy.effect import lazy
+from lazy.effect import lazy, composer
 from lazy.ef_app import EfApp
 
 
-@lazy
+@composer
 def sum(a, b):
     if a.right or b.right:
         return 0
@@ -13,5 +13,5 @@ def sum(a, b):
 def app():
     number_a = (input("input number 1 : ") << int).attempt()
     number_b = (input("input number 2 : ") << int).attempt()
-    app_effect = sum(number_a.excute(), number_b.excute()) << print
+    app_effect = sum(number_a, number_b) << print
     return app_effect
