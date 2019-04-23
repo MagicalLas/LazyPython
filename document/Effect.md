@@ -57,7 +57,7 @@ result.excute() # (2 + 3) + 4
 
 ## attempt
 
-Effect[F] => Effect[Either[G, Err]}로 바꿔주는 특수한 메소드입니다. 지금까지 chain된 함수들중에서 에러가 발생한다면 Either의 left에 값이 있고 에러가 나지않았다면 Either의 right에 값이 존재하게됩니다. 값이 없는경우는 None이 들어있게됩니다.
+Effect[F] => Effect[Either[G, Err]}로 바꿔주는 특수한 메소드입니다. 지금까지 chain된 함수들중에서 에러가 발생하지않는다면 Either의 left에 값이 있고 에러가 발생한다면 Either의 right에 Error값이 존재하게됩니다. 값이 없는경우는 None이 들어있게됩니다.
 
 ## 주의사항
 
