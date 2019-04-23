@@ -5,7 +5,7 @@ from lazy.ef_app import EfApp
 
 @composer
 def sum(a, b):
-    if a.right or b.right:
+    if a.left != None and b.left != None:
         return 0
     return a.left + b.left
 
