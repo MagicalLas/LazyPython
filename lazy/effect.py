@@ -42,3 +42,10 @@ def lazy(function):
     def f(*arg, **kwargs):
         return Effect(function, arg, kwargs)
     return f
+
+
+def composer(function):
+    def f(*arg, **kwargs):
+        arg = [i.excute() for i in arg]
+        return Effect(function, arg, kwargs)
+    return f
