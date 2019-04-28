@@ -1,6 +1,6 @@
-from lazy.utils import input, print, int
-from lazy.effect import lazy, composer
 from lazy.ef_app import EfApp
+from lazy.effect import composer, lazy
+from lazy.utils import input, int, print
 
 
 @composer
