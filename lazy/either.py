@@ -1,15 +1,20 @@
 class Either(object):
-
-    def __init__(self, right, left):
-        self.right = right
-        self.left = left
-
     @staticmethod
     def right(effect):
         rEffect = effect
-        return Either(rEffect, None)
+        return Right(rEffect)
 
     @staticmethod
     def left(effect):
         lEffect = effect
-        return Either(None, lEffect)
+        return Left(lEffect)
+
+
+class Left(object):
+    def __init__(self, value):
+        self.left = value
+
+
+class Right(object):
+    def __init__(self, value):
+        self.right = value
