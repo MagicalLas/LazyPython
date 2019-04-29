@@ -1,4 +1,5 @@
 from .either import Either
+from functools import reduce
 
 
 class Effect(object):
@@ -49,3 +50,18 @@ def composer(function):
         arg = [i.excute() for i in arg]
         return Effect(function, arg, kwargs)
     return f
+
+
+def pure(F):
+    @lazy
+    def dummy(f):
+        return f
+    return dummy(F)
+
+
+def traverse(effects):
+    @composer
+    def append(acc, a):
+        acc.append(a)
+        return acc
+    return reduce(append, effects, pure([]))
