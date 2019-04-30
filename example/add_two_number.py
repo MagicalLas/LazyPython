@@ -9,11 +9,12 @@ from lazy.typematcher import Defualt, TypeMatcher, _type, chain
 def sum(a, b):
     return a + b
 
+
 @EfApp
 def app():
     mather = TypeMatcher(
-        _type(Left) <- chain(lambda x: x.left),
-        _type(Right) <- chain(lambda x: 0),
+        _type(Left) < - chain(lambda x: x.left),
+        _type(Right) < - chain(lambda x: 0),
     )
     number_a = (input("input number 1 : ") << int).attempt() & mather
     number_b = (input("input number 2 : ") << int).attempt() & mather
