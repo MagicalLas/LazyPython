@@ -1,4 +1,4 @@
 def EfApp(function):
     def f(*arg, **kwargs):
-        function().excute()
+        return function().excute()
     return f()
