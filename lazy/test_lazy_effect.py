@@ -15,9 +15,7 @@ def mul(a):
 
 def test_lazy_sum():
     sum_effect = sum(1, 2)
-
     assert isinstance(sum_effect, Effect)
-
     assert sum_effect.excute() == 1 + 2
     assert not sum_effect.excute() == 1 + 3
 
@@ -39,5 +37,4 @@ def test_lazy_one_multiplex():
         .flatMap(multiplexer)\
         .flatMap(multiplexer)\
         & (lambda x: x - 4)
-
     assert chain_effect.excute() == (3 * 2 * 2) - 4
