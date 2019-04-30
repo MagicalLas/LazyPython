@@ -1,5 +1,4 @@
-from .lazy import lazy
-
+from .effect import lazy
 
 class Resource(object):
 
