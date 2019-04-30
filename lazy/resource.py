@@ -1,5 +1,6 @@
 from .effect import lazy
 
+
 class Resource(object):
 
     def __init__(self, f, g, middle):
@@ -13,15 +14,15 @@ class Resource(object):
             self.file = self.f.excute()
             return excuter(self.file)
         self.middle = dummy()
-        return Resource(self.f, self.g, self.middle)
+        return self
 
     def map(self, f):
         self.middle = self.middle & f
-        return Resource(self.f, self.g, self.middle)
+        return self
 
     def flatMap(self, f):
         self.middle = self.middle << f
-        return Resource(self.f, self.g, self.middle)
+        return self
 
     def excute(self):
         result = self.middle.excute()
