@@ -27,6 +27,7 @@ jobs:
       - run:
           name: run test
           command: |
+            ls
             pytest --cov-report term-missing --cov=lazy
 
       - store_artifacts:
