@@ -19,3 +19,5 @@ jobs:
           command: |
             ls
             pytest --cov-report term-missing --cov=lazy
+            codecov --token=3f44ac03-59d3-42e1-965f-fd47b2f1a7ab
+            codecov
