@@ -8,11 +8,11 @@ class Resource(object):
         self.g = g
         self.middle = middle
 
-    def use(self, excuter):
+    def use(self, executer):
         @lazy
         def dummy():
-            self.file = self.f.excute()
-            return excuter(self.file)
+            self.file = self.f.execute()
+            return executer(self.file)
         self.middle = dummy()
         return self
 
@@ -24,8 +24,8 @@ class Resource(object):
         self.middle = self.middle << f
         return self
 
-    def excute(self):
-        result = self.middle.excute()
+    def execute(self):
+        result = self.middle.execute()
         self.g(self.file)
         return result
 
