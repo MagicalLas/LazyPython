@@ -18,6 +18,6 @@ sum_effect.excute() # 2 + 4
 ## Test
 
 ```bash
-cd  lazy
-pytest
+
+pytest --cov-report term-missing --cov=lazy
 ```
