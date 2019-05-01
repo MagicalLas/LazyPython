@@ -15,7 +15,7 @@ def sum(a, b):
     return a + b
 
 sum_effect = sum(2, 4)
-sum_effect.excute() # 2 + 4
+sum_effect.execute # 2 + 4
 ```
 
 ## Test
