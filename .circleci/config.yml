@@ -15,13 +15,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
             pip install -r requirements.txt
 
       - save_cache:
-          paths:
-            - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
       - run:
