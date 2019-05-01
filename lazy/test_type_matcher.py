@@ -15,10 +15,10 @@ def test_type_matching(monkeypatch):
     effectB = string_a & mather
 
     monkeypatch.setattr('lazy.utils._input', lambda x: "90")
-    assert effectA.excute() is False
+    assert effectA.execute() is False
 
     monkeypatch.setattr('lazy.utils._input', lambda x: "LazyPython")
-    assert effectB.excute() is True
+    assert effectB.execute() is True
     assert mather(4) is False
 
 
@@ -29,7 +29,7 @@ def test_type_miss_matching(monkeypatch):  # miss match
     )
     effect = string_a & mather
     monkeypatch.setattr('lazy.utils._input', lambda x: "Lazy")
-    assert effect.excute() == "Lazy"
+    assert effect.execute() == "Lazy"
 
 
 def test_type_default():  # default match
@@ -37,7 +37,7 @@ def test_type_default():  # default match
         _type(Defualt) < - chain(lambda x: "Lazy"),
     )
     effect = pure(None) & mather
-    assert effect.excute() == "Lazy"
+    assert effect.execute() == "Lazy"
 
 
 def test_type():

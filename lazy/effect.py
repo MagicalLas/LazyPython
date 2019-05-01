@@ -8,26 +8,26 @@ class Effect(object):
         self.a = a
         self.w = w
 
-    def excute(self):
+    def execute(self):
         return self.f(*self.a, **self.w)
 
     def flatMap(self, f):
         @lazy
         def dummy(_F):
-            return _F(self.excute()).excute()
+            return _F(self.execute()).execute()
         return dummy(f)
 
     def map(self, f):
         @lazy
         def dummy(_F):
-            return _F(self.excute())
+            return _F(self.execute())
         return dummy(f)
 
     def attempt(self):
         @lazy
         def dummy():
             try:
-                return Either.left(self.excute())
+                return Either.left(self.execute())
             except Exception as e:
                 return Either.right(e)
         return dummy()
@@ -47,7 +47,7 @@ def lazy(function):
 
 def composer(function):
     def f(*arg, **kwargs):
-        arg = [i.excute() for i in arg]
+        arg = [i.execute() for i in arg]
         return Effect(function, arg, kwargs)
     return f
 
