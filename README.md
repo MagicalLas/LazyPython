@@ -1,5 +1,8 @@
 # LazyPython
 
+[![codecov](https://codecov.io/gh/Las-Wonho/LazyPython/branch/master/graph/badge.svg)](https://codecov.io/gh/Las-Wonho/LazyPython)
+[![CircleCI](https://circleci.com/gh/Las-Wonho/LazyPython/tree/master.svg?style=svg)](https://circleci.com/gh/Las-Wonho/LazyPython/tree/master)
+
 Library for Pure Functional Programming
 
 ## Useage
@@ -16,8 +19,6 @@ sum_effect.excute() # 2 + 4
 ```
 
 ## Test
-
-[![codecov](https://codecov.io/gh/Las-Wonho/LazyPython/branch/master/graph/badge.svg)](https://codecov.io/gh/Las-Wonho/LazyPython)
 
 ```bash
 
