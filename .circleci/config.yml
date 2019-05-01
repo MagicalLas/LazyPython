@@ -7,25 +7,14 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-
+      
       - run:
           name: install dependencies
           command: |
             pip install -r requirements.txt
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
 
       - run:
           name: run test
           command: |
             ls
             pytest --cov-report term-missing --cov=lazy
-
-      - store_artifacts:
-          path: test-reports
-          destination: test-reports
