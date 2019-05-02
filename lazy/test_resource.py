@@ -8,4 +8,4 @@ def test_resource(monkeypatch):
     resource_effect = input("Get Resource")
     resource = Resource.make(resource_effect)(lazy(lambda x: x))
     resource = resource.use(lambda x:x+"~!").map(lambda x:"Hello "+x).flatMap(lazy(lambda x: x))
-    assert resource.execute() == "Hello Lazy~!"
+    assert resource.execute == "Hello Lazy~!"
