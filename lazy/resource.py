@@ -24,6 +24,7 @@ class Resource(object):
         self.middle = self.middle << f
         return self
 
+    @property
     def execute(self):
         result = self.middle.execute
         self.g(self.file)
