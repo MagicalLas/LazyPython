@@ -21,6 +21,9 @@ sum_effect.execute # 2 + 4
 ## Test
 
 ```bash
-
 pytest --cov-report term-missing --cov=lazy
 ```
+
+## Logo
+
+![Image](logo.PNG)
