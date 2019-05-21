@@ -24,6 +24,10 @@ class Resource(object):
         self.middle = self.middle << f
         return self
 
+    def attempt(self):
+        self.middle = self.middle.attempt()
+        return self
+
     @property
     def execute(self):
         result = self.middle.execute
