@@ -16,6 +16,6 @@ def test_resource_attmept(monkeypatch):
 
     resource_effect = input("Get Resource")
     resource = Resource.make(resource_effect)(lazy(lambda x: x))
-    resource = resource.use(lambda x:x+"~!").map(lambda x:"Hello "+x).attempt()
+    resource = resource.use(lambda x:x+"~!").map(lambda x:"Hello "+x).attempt
     assert isinstance(resource.execute, Left)
     
