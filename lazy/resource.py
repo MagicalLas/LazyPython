@@ -26,7 +26,7 @@ class Resource(object):
 
     @property
     def attempt(self):
-        self.middle = self.middle.attempt()
+        self.middle = self.middle.attempt
         return self
 
     @property
