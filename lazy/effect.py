@@ -24,6 +24,7 @@ class Effect(object):
             return _F(self.execute)
         return dummy(f)
 
+    @property
     def attempt(self):
         @lazy
         def dummy():
