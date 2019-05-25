@@ -12,8 +12,14 @@ class Resource(object):
         return Resource(self.maker, f, self.closer)
 
     def map(self, f):
+        def dummy(resource):
+            return f(self.function_chain(resource))
+        return Resource(self.maker, dummy, self.closer)
 
     def flatMap(self, f):
+        def dummy(resource):
+            return f(self.function_chain(resource)).execute
+        return Resource(self.maker, dummy, self.closer)
 
     @property
     def attempt(self):
