@@ -1,4 +1,5 @@
 from .effect import lazy
+from .either import Either
 
 
 class Resource(object):
@@ -23,6 +24,12 @@ class Resource(object):
 
     @property
     def attempt(self):
+        def dummy(resource):
+            try:
+                return Either.left(self.function_chain(resource))
+            except Exception as e:
+                return Either.right(e)
+        return Resource(self.maker, dummy, self.closer)
 
     @property
     def execute(self):
