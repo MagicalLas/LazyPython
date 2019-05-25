@@ -8,7 +8,8 @@ class Resource(object):
         self.function_chain = function_chain
         self.closer = closer
 
-    def use(self, executer):
+    def use(self, f):
+        return Resource(self.maker, f, self.closer)
 
     def map(self, f):
 
@@ -20,7 +21,7 @@ class Resource(object):
     @property
     def execute(self):
         resource = self.maker.execute
-        result = self.function_chain(resource).exeucte
+        result = self.function_chain(resource)
         self.closer(resource)
         return result
 
