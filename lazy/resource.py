@@ -3,6 +3,10 @@ from .effect import lazy
 
 class Resource(object):
 
+    def __init__(self, maker, function_chain, closer):
+        self.maker = maker
+        self.function_chain = function_chain
+        self.closer = closer
 
     def use(self, executer):
 
