@@ -15,6 +15,9 @@ class Resource(object):
 
     @property
     def execute(self):
+        resource = self.maker()
+        result = self.function_chain(resource).exeucte
+        self.closer(resource)
         return result
 
     @staticmethod
