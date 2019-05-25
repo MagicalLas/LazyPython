@@ -31,8 +31,8 @@ class Resource(object):
 
     @staticmethod
     def _relese(f):
-        _f = f
+        maker = f
 
-        def relese(g):
-            return Resource(_f, g, lazy(lambda x: x))
+        def relese(closer):
+            return Resource(maker, lazy(lambda x: x), closer)
         return relese
