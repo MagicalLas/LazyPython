@@ -1,38 +1,41 @@
 from .effect import lazy
+from .either import Either
 
 
 class Resource(object):
 
-    def __init__(self, f, g, middle):
-        self.f = f
-        self.g = g
-        self.middle = middle
+    def __init__(self, maker, function_chain, closer):
+        self.maker = maker
+        self.function_chain = function_chain
+        self.closer = closer
 
-    def use(self, executer):
-        @lazy
-        def dummy():
-            self.file = self.f.execute
-            return executer(self.file)
-        self.middle = dummy()
-        return self
+    def use(self, f):
+        return Resource(self.maker, f, self.closer)
 
     def map(self, f):
-        self.middle = self.middle & f
-        return self
+        def dummy(resource):
+            return f(self.function_chain(resource))
+        return Resource(self.maker, dummy, self.closer)
 
     def flatMap(self, f):
-        self.middle = self.middle << f
-        return self
+        def dummy(resource):
+            return f(self.function_chain(resource)).execute
+        return Resource(self.maker, dummy, self.closer)
 
     @property
     def attempt(self):
-        self.middle = self.middle.attempt
-        return self
+        def dummy(resource):
+            try:
+                return Either.left(self.function_chain(resource))
+            except Exception as e:
+                return Either.right(e)
+        return Resource(self.maker, dummy, self.closer)
 
     @property
     def execute(self):
-        result = self.middle.execute
-        self.g(self.file)
+        resource = self.maker.execute
+        result = self.function_chain(resource)
+        self.closer(resource)
         return result
 
     @staticmethod
@@ -41,8 +44,8 @@ class Resource(object):
 
     @staticmethod
     def _relese(f):
-        _f = f
+        maker = f
 
-        def relese(g):
-            return Resource(_f, g, lazy(lambda x: x))
+        def relese(closer):
+            return Resource(maker, lazy(lambda x: x), closer)
         return relese
