@@ -19,7 +19,7 @@ class Resource(object):
 
     @property
     def execute(self):
-        resource = self.maker()
+        resource = self.maker.execute
         result = self.function_chain(resource).exeucte
         self.closer(resource)
         return result
