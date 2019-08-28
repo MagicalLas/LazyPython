@@ -5,7 +5,7 @@
 
 Library for Pure Functional Programming
 
-## Useage
+## Usage
 
 ```python
 from lazy.effect import lazy
