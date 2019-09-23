@@ -1,4 +1,4 @@
-from .lazy import _, F
+from .lazy import dsl
 
 
 def test_underscore_calculate():
